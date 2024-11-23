@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <ActionBar title="My Library" />
+    <GridLayout rows="auto, *">
+        <StackLayout row="0" class="p-4">
+            <Button text="Create New Playlist" tap="{{ onCreatePlaylist }}" 
+                    class="bg-purple-500 text-white mb-4" />
+            
+            <SegmentedBar selectedIndex="{{ selectedViewIndex }}" 
+                         class="mb-4">
+                <SegmentedBar.items>
+                    <SegmentedBarItem title="Playlists" />
+                    <SegmentedBarItem title="Stories" />
+                    <SegmentedBarItem title="Downloads" />
+                </SegmentedBar.items>
+            </SegmentedBar>
+        </StackLayout>
+
+        <GridLayout row="1" class="p-4">
+            <!-- Playlists View -->
+            <ListView items="{{ playlists }}" visibility="{{ selectedViewIndex === 0 ? 'visible' : 'collapsed' }}">
+                <ListView.itemTemplate>
+                    <GridLayout columns="auto, *, auto" class="p-2 border-b border-gray-200">
+                        <Image col="0" src="{{ playlistImage }}" width="60" height="60" 
+                               class="rounded-lg" />
+                        <StackLayout col="1" class="ml-2">
+                            <Label text="{{ playlistName }}" class="font-bold" />
+                            <Label text="{{ songCount }} songs" class="text-gray-500" />
+                        </StackLayout>
+                        <Label col="2" text="..." class="text-2xl" 
+                               tap="{{ onPlaylistOptions }}" />
+                    </GridLayout>
+                </ListView.itemTemplate>
+            </ListView>
+
+            <!-- Stories View -->
+            <ListView items="{{ savedStories }}" visibility="{{ selectedViewIndex === 1 ? 'visible' : 'collapsed' }}">
+                <ListView.itemTemplate>
+                    <StackLayout class="p-2 border-b border-gray-200">
+                        <Label text="{{ storyTitle }}" class="font-bold" />
+                        <Label text="{{ category }}" class="text-gray-500" />
+                        <Label text="{{ duration }}" class="text-gray-400" />
+                    </StackLayout>
+                </ListView.itemTemplate>
+            </ListView>
+
+            <!-- Downloads View -->
+            <ListView items="{{ downloads }}" visibility="{{ selectedViewIndex === 2 ? 'visible' : 'collapsed' }}">
+                <ListView.itemTemplate>
+                    <GridLayout columns="auto, *, auto" class="p-2 border-b border-gray-200">
+                        <Image col="0" src="{{ contentImage }}" width="60" height="60" 
+                               class="rounded-lg" />
+                        <StackLayout col="1" class="ml-2">
+                            <Label text="{{ title }}" class="font-bold" />
+                            <Label text="{{ type }}" class="text-gray-500" />
+                            <Label text="{{ size }}" class="text-gray-400" />
+                        </StackLayout>
+                        <Button col="2" text="Delete" tap="{{ onDeleteDownload }}" 
+                                class="bg-red-500 text-white" />
+                    </GridLayout>
+                </ListView.itemTemplate>
+            </ListView>
+        </GridLayout>
+    </GridLayout>
+</Page>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <ActionBar title="Community">
+        <ActionItem ios.position="right" android.position="actionBar" 
+                   text="Share" tap="{{ onShare }}" />
+    </ActionBar>
+    <ScrollView>
+        <StackLayout class="p-4">
+            <StackLayout class="mb-4">
+                <Label text="Family Stories" class="text-xl font-bold mb-2" />
+                <Button text="Share Your Story" tap="{{ onShareStory }}" 
+                        class="bg-purple-500 text-white mb-2" />
+                <ListView items="{{ familyStories }}" height="200">
+                    <ListView.itemTemplate>
+                        <GridLayout columns="auto, *" class="p-2 border-b border-gray-200">
+                            <Image col="0" src="{{ userImage }}" width="40" height="40" 
+                                   class="rounded-full" />
+                            <StackLayout col="1" class="ml-2">
+                                <Label text="{{ userName }}" class="font-bold" />
+                                <Label text="{{ storyTitle }}" class="text-gray-800" />
+                                <Label text="{{ likes }} likes • {{ comments }} comments" 
+                                       class="text-gray-500" />
+                            </StackLayout>
+                        </GridLayout>
+                    </ListView.itemTemplate>
+                </ListView>
+            </StackLayout>
+
+            <StackLayout class="mb-4">
+                <Label text="Parent Discussion" class="text-xl font-bold mb-2" />
+                <ListView items="{{ discussions }}" height="200">
+                    <ListView.itemTemplate>
+                        <StackLayout class="p-2 border-b border-gray-200">
+                            <Label text="{{ topic }}" class="font-bold" />
+                            <Label text="{{ lastMessage }}" textWrap="true" />
+                            <Label text="{{ participants }} participants" 
+                                   class="text-gray-500" />
+                        </StackLayout>
+                    </ListView.itemTemplate>
+                </ListView>
+            </StackLayout>
+
+            <StackLayout class="mb-4">
+                <Label text="Featured Creators" class="text-xl font-bold mb-2" />
+                <ScrollView orientation="horizontal">
+                    <StackLayout orientation="horizontal">
+                        <Repeater items="{{ creators }}">
+                            <Repeater.itemTemplate>
+                                <StackLayout class="m-2 p-2 bg-purple-100 rounded-lg" 
+                                           width="150">
+                                    <Image src="{{ creatorImage }}" width="100" height="100" 
+                                           class="rounded-full" />
+                                    <Label text="{{ creatorName }}" class="font-bold text-center" />
+                                    <Label text="{{ specialty }}" class="text-center text-gray-600" />
+                                </StackLayout>
+                            </Repeater.itemTemplate>
+                        </Repeater>
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</Page>

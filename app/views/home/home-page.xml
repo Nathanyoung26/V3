@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <ActionBar title="Welcome, Little Star!" />
+    <ScrollView>
+        <StackLayout class="p-4">
+            <Label text="Continue Listening" class="text-xl font-bold mb-2" />
+            <ListView items="{{ recentlyPlayed }}" height="150" class="mb-4">
+                <ListView.itemTemplate>
+                    <StackLayout class="p-2">
+                        <Image src="{{ imageUrl }}" width="100" height="100" class="rounded-lg" />
+                        <Label text="{{ title }}" class="font-semibold" />
+                        <Label text="{{ subtitle }}" class="text-gray-500" />
+                    </StackLayout>
+                </ListView.itemTemplate>
+            </ListView>
+
+            <Label text="Story of the Day" class="text-xl font-bold mb-2" />
+            <GridLayout rows="auto" columns="*" class="mb-4">
+                <StackLayout tap="{{ onStoryTap }}" class="bg-purple-100 p-4 rounded-lg">
+                    <Label text="{{ dailyStory.title }}" class="font-bold" />
+                    <Label text="{{ dailyStory.description }}" textWrap="true" />
+                </StackLayout>
+            </GridLayout>
+
+            <Label text="Popular Learning Songs" class="text-xl font-bold mb-2" />
+            <ListView items="{{ learningPlaylists }}" height="150">
+                <ListView.itemTemplate>
+                    <StackLayout class="p-2">
+                        <Image src="{{ imageUrl }}" width="100" height="100" class="rounded-lg" />
+                        <Label text="{{ title }}" class="font-semibold" />
+                        <Label text="{{ category }}" class="text-gray-500" />
+                    </StackLayout>
+                </ListView.itemTemplate>
+            </ListView>
+        </StackLayout>
+    </ScrollView>
+</Page>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <ActionBar title="Learn" />
+    <ScrollView>
+        <StackLayout class="p-4">
+            <Label text="Educational Activities" class="text-xl font-bold mb-4" />
+            
+            <GridLayout rows="auto, auto, auto" columns="*, *" class="mb-4">
+                <StackLayout col="0" row="0" class="m-1 p-4 bg-blue-100 rounded-lg" tap="{{ onLanguageLearning }}">
+                    <Label text="🗣️ Language Learning" class="font-bold" />
+                    <Label text="Learn new words in multiple languages" textWrap="true" />
+                </StackLayout>
+                
+                <StackLayout col="1" row="0" class="m-1 p-4 bg-green-100 rounded-lg" tap="{{ onNumbersAndCounting }}">
+                    <Label text="🔢 Numbers & Counting" class="font-bold" />
+                    <Label text="Fun with numbers and basic math" textWrap="true" />
+                </StackLayout>
+                
+                <StackLayout col="0" row="1" class="m-1 p-4 bg-yellow-100 rounded-lg" tap="{{ onAlphabetSongs }}">
+                    <Label text="📚 Alphabet Songs" class="font-bold" />
+                    <Label text="Learn letters through music" textWrap="true" />
+                </StackLayout>
+                
+                <StackLayout col="1" row="1" class="m-1 p-4 bg-red-100 rounded-lg" tap="{{ onAnimalsAndSounds }}">
+                    <Label text="🐘 Animals & Sounds" class="font-bold" />
+                    <Label text="Discover animal sounds and facts" textWrap="true" />
+                </StackLayout>
+            </GridLayout>
+
+            <Label text="Today's Learning Path" class="text-xl font-bold mb-2" />
+            <StackLayout class="bg-purple-100 p-4 rounded-lg mb-4">
+                <Label text="{{ dailyLearningPath.title }}" class="font-bold" />
+                <Progress value="{{ dailyLearningPath.progress }}" maxValue="100" class="m-2" />
+                <Label text="{{ dailyLearningPath.description }}" textWrap="true" />
+                <Button text="Continue Learning" tap="{{ onContinueLearning }}" class="bg-purple-500 text-white mt-2" />
+            </StackLayout>
+
+            <Label text="Parent Tips" class="text-xl font-bold mb-2" />
+            <ListView items="{{ parentingTips }}" height="150">
+                <ListView.itemTemplate>
+                    <StackLayout class="p-2 border-b border-gray-200">
+                        <Label text="{{ title }}" class="font-bold" />
+                        <Label text="{{ description }}" textWrap="true" class="text-gray-600" />
+                    </StackLayout>
+                </ListView.itemTemplate>
+            </ListView>
+        </StackLayout>
+    </ScrollView>
+</Page>

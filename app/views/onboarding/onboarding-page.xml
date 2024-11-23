@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <ActionBar title="Welcome to BabyTunes" />
+    <GridLayout>
+        <ScrollView>
+            <StackLayout class="p-4">
+                <!-- Step indicator -->
+                <GridLayout columns="*, *, *" class="mb-4">
+                    <StackLayout col="0" class="{{ currentStep >= 1 ? 'bg-purple-500' : 'bg-gray-300' }} h-2" />
+                    <StackLayout col="1" class="{{ currentStep >= 2 ? 'bg-purple-500' : 'bg-gray-300' }} h-2" />
+                    <StackLayout col="2" class="{{ currentStep >= 3 ? 'bg-purple-500' : 'bg-gray-300' }} h-2" />
+                </GridLayout>
+
+                <!-- Step 1: Family Members -->
+                <StackLayout visibility="{{ currentStep === 1 ? 'visible' : 'collapsed' }}">
+                    <Label text="Add Family Members" class="text-2xl font-bold mb-4" />
+                    <Label text="Add your children and family members who'll be using the app" class="mb-4" />
+                    
+                    <ListView items="{{ familyMembers }}" class="mb-4">
+                        <ListView.itemTemplate>
+                            <GridLayout columns="auto, *, auto" class="p-2">
+                                <Image col="0" src="{{ photo }}" width="50" height="50" class="rounded-full" />
+                                <StackLayout col="1" class="ml-2">
+                                    <Label text="{{ name }}" class="font-bold" />
+                                    <Label text="{{ role }}" class="text-gray-500" />
+                                </StackLayout>
+                                <Button col="2" text="✕" tap="{{ $parent.onRemoveMember }}" class="text-red-500" />
+                            </GridLayout>
+                        </ListView.itemTemplate>
+                    </ListView>
+
+                    <Button text="+ Add Family Member" tap="{{ onAddMember }}" class="bg-purple-500 text-white mb-4" />
+                </StackLayout>
+
+                <!-- Step 2: Voice Recording -->
+                <StackLayout visibility="{{ currentStep === 2 ? 'visible' : 'collapsed' }}">
+                    <Label text="Record Your Voice" class="text-2xl font-bold mb-4" />
+                    <Label text="Read the following poem for 15 seconds:" class="mb-2" />
+                    <Label text="{{ poemText }}" textWrap="true" class="p-4 bg-purple-100 rounded-lg mb-4" />
+                    
+                    <GridLayout rows="auto" columns="*, *" class="mb-4">
+                        <Button col="0" text="{{ isRecording ? 'Stop' : 'Start' }} Recording" 
+                                tap="{{ onToggleRecording }}"
+                                class="{{ isRecording ? 'bg-red-500' : 'bg-purple-500' }} text-white" />
+                        <Button col="1" text="Play Recording" tap="{{ onPlayRecording }}"
+                                isEnabled="{{ hasRecording }}"
+                                class="{{ hasRecording ? 'bg-purple-500' : 'bg-gray-300' }} text-white" />
+                    </GridLayout>
+
+                    <Label text="{{ recordingStatus }}" class="text-center" 
+                           visibility="{{ recordingStatus ? 'visible' : 'collapsed' }}" />
+                </StackLayout>
+
+                <!-- Step 3: Preferences -->
+                <StackLayout visibility="{{ currentStep === 3 ? 'visible' : 'collapsed' }}">
+                    <Label text="Story Preferences" class="text-2xl font-bold mb-4" />
+                    <Label text="Choose who can narrate stories:" class="mb-2" />
+                    
+                    <ListView items="{{ familyMembers }}" class="mb-4">
+                        <ListView.itemTemplate>
+                            <GridLayout columns="*, auto" class="p-2">
+                                <Label col="0" text="{{ name }}" />
+                                <Switch col="1" checked="{{ canNarrate }}" />
+                            </GridLayout>
+                        </ListView.itemTemplate>
+                    </ListView>
+
+                    <Button text="Complete Setup" tap="{{ onCompleteSetup }}" 
+                            class="bg-purple-500 text-white" />
+                </StackLayout>
+
+                <!-- Navigation Buttons -->
+                <GridLayout columns="auto, auto" class="mt-4" 
+                           horizontalAlignment="center">
+                    <Button col="0" text="Back" tap="{{ onPreviousStep }}" 
+                            class="bg-gray-300"
+                            visibility="{{ currentStep > 1 ? 'visible' : 'collapsed' }}" />
+                    <Button col="1" text="Next" tap="{{ onNextStep }}" 
+                            class="bg-purple-500 text-white ml-2"
+                            visibility="{{ currentStep < 3 ? 'visible' : 'collapsed' }}" />
+                </GridLayout>
+            </StackLayout>
+        </ScrollView>
+    </GridLayout>
+</Page>

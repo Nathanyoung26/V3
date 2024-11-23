@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TabView androidTabsPosition="bottom">
+    <TabViewItem title="Home" ios:iconSource="res://home" android:iconSource="res://home">
+        <Frame defaultPage="views/home/home-page"></Frame>
+    </TabViewItem>
+    <TabViewItem title="Search" ios:iconSource="res://search" android:iconSource="res://search">
+        <Frame defaultPage="views/search/search-page"></Frame>
+    </TabViewItem>
+    <TabViewItem title="Learn" ios:iconSource="res://learn" android:iconSource="res://learn">
+        <Frame defaultPage="views/learn/learn-page"></Frame>
+    </TabViewItem>
+    <TabViewItem title="Community" ios:iconSource="res://community" android:iconSource="res://community">
+        <Frame defaultPage="views/community/community-page"></Frame>
+    </TabViewItem>
+    <TabViewItem title="Library" ios:iconSource="res://library" android:iconSource="res://library">
+        <Frame defaultPage="views/library/library-page"></Frame>
+    </TabViewItem>
+</TabView>
